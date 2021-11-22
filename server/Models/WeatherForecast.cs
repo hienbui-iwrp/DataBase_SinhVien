@@ -1,6 +1,6 @@
 using System;
 
-namespace Server
+namespace DataBase_SinhVien
 {
     public class WeatherForecast
     {
