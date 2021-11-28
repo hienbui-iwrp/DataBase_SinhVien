@@ -33,6 +33,7 @@
   border: 1px solid #000;
   width: 100%;
   display: flex;
+  background-color: var(--backgroundContent-color);
 }
 
 .body__content {
@@ -56,13 +57,33 @@
   background-color: var(--cancel-color);
 }
 
+/* ----Nhom lop */
+.class-list {
+  display: none;
+}
+
+.class-list--active {
+  display: block !important;
+}
+
+.class-list__new {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--subField-color);
+  padding: 5px 5%;
+  font-weight: 500;
+  font-size: 20px;
+}
+
 .class-list .subject__field,
 .class-list .subject__body {
   border: none;
+  background-color: #fff;
 }
 
 .class-list .subject__field {
-  background-color: var(--subField-color);
+  background-color: #fff;
+  border-top: 1px solid;
 }
 
 .class-list .field__content,
@@ -70,4 +91,9 @@
   width: calc(100% / 4);
   padding: 5px 10px;
   text-align: center;
+}
+
+.class-list__sched {
+  width: 80%;
+  margin: auto;
 }

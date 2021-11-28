@@ -37,7 +37,58 @@ const MonHoc = () => {
             },
         ]
     )
-
+    const [nhomMon, setNhomMon] = useState([
+        {
+            name: 'L01',
+            kiHoc: '191',
+            ngay: 2,
+            tietBatDau: 2,
+            tietKetThuc: 4,
+            mscb: '008395',
+            maMonHoc: 'CO2017', 
+            soLuong: 0
+        },
+        {
+            name: 'L02',
+            kiHoc: '191',
+            ngay: 3,
+            tietBatDau: 7,
+            tietKetThuc: 9,
+            mscb: '002883',
+            maMonHoc: 'CO2017', 
+            soLuong: 0
+        },
+        {
+            name: 'L01',
+            kiHoc: '192',
+            ngay: 2,
+            tietBatDau: 2,
+            tietKetThuc: 4,
+            mscb: '008231',
+            maMonHoc: 'CO2013', 
+            soLuong: 0
+        },
+        {
+            name: 'L01',
+            kiHoc: '201',
+            ngay: 5,
+            tietBatDau: 2,
+            tietKetThuc: 4,
+            mscb: '002603',
+            maMonHoc: 'ME1015', 
+            soLuong: 0
+        },
+        {
+            name: 'L01',
+            kiHoc: '192',
+            ngay: 4,
+            tietBatDau: 5,
+            tietKetThuc: 6,
+            mscb: '002765',
+            maMonHoc: 'EE2005', 
+            soLuong: 0
+        }
+    ])
     return (
         <div className="student">
             <div className="student-header">
@@ -67,7 +118,7 @@ const MonHoc = () => {
                                 return (
                                     <div>
                                         <Info subject = {subject}/>
-                                        <Detail/>
+                                        <Detail subject = {subject} nhomMon={nhomMon}/>
                                     </div>
                                 )
                             })
