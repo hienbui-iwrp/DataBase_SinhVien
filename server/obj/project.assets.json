@@ -610,19 +610,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vanh\\.nuget\\packages\\": {}
+    "C:\\Users\\PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\211\\DB\\lab\\BTL2\\DataBase_SinhVien\\server\\DataBase_SinhVien.csproj",
+      "projectUniqueName": "E:\\211\\data_Base\\lab\\assignment2\\code\\DataBase_SinhVien\\server\\DataBase_SinhVien.csproj",
       "projectName": "DataBase_SinhVien",
-      "projectPath": "D:\\211\\DB\\lab\\BTL2\\DataBase_SinhVien\\server\\DataBase_SinhVien.csproj",
-      "packagesPath": "C:\\Users\\Vanh\\.nuget\\packages\\",
-      "outputPath": "D:\\211\\DB\\lab\\BTL2\\DataBase_SinhVien\\server\\obj\\",
+      "projectPath": "E:\\211\\data_Base\\lab\\assignment2\\code\\DataBase_SinhVien\\server\\DataBase_SinhVien.csproj",
+      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+      "outputPath": "E:\\211\\data_Base\\lab\\assignment2\\code\\DataBase_SinhVien\\server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Vanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -667,6 +667,16 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -675,7 +685,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

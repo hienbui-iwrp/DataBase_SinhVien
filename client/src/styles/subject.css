@@ -1,0 +1,73 @@
+.subject-container {
+  /* border: 2px solid; */
+  /* padding: 0px 20px; */
+}
+
+.subject__field {
+  display: flex;
+  justify-content: left;
+  border: 2px solid;
+  background-color: var(--field-color);
+}
+
+.field__content,
+.body__content {
+  width: calc(100% / 6);
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.body__content--long {
+  width: calc(150% / 6);
+}
+
+.body__content--short {
+  width: calc(50% / 6);
+}
+
+.subject-list {
+  border: 1px solid #000;
+}
+
+.subject__body {
+  border: 1px solid #000;
+  width: 100%;
+  display: flex;
+}
+
+.body__content {
+  font-weight: 450;
+}
+
+.button--edit,
+.button--delete {
+  padding: 0px 10px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+}
+
+.button--edit {
+  background-color: var(--accept-color);
+}
+
+.button--delete {
+  background-color: var(--cancel-color);
+}
+
+.class-list .subject__field,
+.class-list .subject__body {
+  border: none;
+}
+
+.class-list .subject__field {
+  background-color: var(--subField-color);
+}
+
+.class-list .field__content,
+.class-list .body__content {
+  width: calc(100% / 4);
+  padding: 5px 10px;
+  text-align: center;
+}
