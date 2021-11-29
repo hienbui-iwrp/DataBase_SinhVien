@@ -140,7 +140,7 @@ const SinhVien = () => {
                         id=""
                         onChange={(e) => {
                             setsex(e.target.value);
-                            SearchSinhvien(search, faculty, e.target.value)
+                            SearchSinhvien(search, faculty, e.target.value);
                         }}
                     >
                         <option value="Giới tính">Giới tính</option>
@@ -327,12 +327,7 @@ const SinhVien = () => {
                                     <button type="submit">Thêm</button>
                                 </td>
                             </tr>
-                            <SinhViens
-                                Students={Students}
-                                search={search}
-                                sex={sex}
-                                faculty={faculty}
-                            />
+                            <SinhViens Students={Students} />
                         </tbody>
                     </table>
                 </form>
