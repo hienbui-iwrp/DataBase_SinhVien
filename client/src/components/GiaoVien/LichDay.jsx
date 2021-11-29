@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
-const ThoiKhoaBieu = ({ mssv }) => {
+const LichDay = ({ mssv }) => {
     const [schedule, setschedule] = useState([]);
     const fetchData = () => {};
 
@@ -57,4 +57,4 @@ const ThoiKhoaBieu = ({ mssv }) => {
     );
 };
 
-export default ThoiKhoaBieu;
+export default LichDay;

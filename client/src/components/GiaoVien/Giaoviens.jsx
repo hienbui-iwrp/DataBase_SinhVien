@@ -12,7 +12,7 @@ const GiaoViens = ({ Teachers, search, sex, faculty }) => {
                         if (faculty === "Khoa" || faculty === teacher.khoa)
                             return (
                                 <tr key={index}>
-                                    <td>{teacher.mscv}</td>
+                                    <td>{teacher.mscb}</td>
                                     <td>{teacher.ho}</td>
                                     <td>{teacher.ten}</td>
                                     <td>{teacher.ngaySinh}</td>
@@ -20,7 +20,9 @@ const GiaoViens = ({ Teachers, search, sex, faculty }) => {
                                     <td>{teacher.hocHam}</td>
                                     <td>{teacher.maKhoa}</td>
                                     <td>{teacher.chuyenMon}</td>
-                                    <td></td>
+                                    <td>
+                                        
+                                    </td>
                                 </tr>
                             );
             })}

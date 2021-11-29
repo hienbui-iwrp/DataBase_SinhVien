@@ -11,9 +11,27 @@ const GiaoVien = () => {
 
     const InsertGiaoVien = () => {};
 
-    const fetchData = () => {};
+    const fetchData = () => {        
+        var requestOptions = {
+            method: "GET",
+            redirect: "follow",
+        };
 
-    useEffect(() => {}, []);
+        fetch("https://localhost:5001/api/giangvien", requestOptions)
+            .then((response) => response.json())
+            .then((result) => setTeachers(result))
+            .catch((error) => console.log("error", error));
+        
+        fetch("https://localhost:5001/api/sinhvien/khoa", requestOptions)
+            .then((response) => response.json())
+            .then((result) => setFaculties(result))
+            .catch((error) => console.log("error", error));};
+
+    useEffect(() => {
+        
+fetchData();
+        
+    }, []);
 
     return (
         <>
@@ -21,7 +39,7 @@ const GiaoVien = () => {
                 <div className="student-header">
                     <input
                         type="text"
-                        placeholder="Search mssv, tên"
+                        placeholder="Search mscb, tên"
                         onChange={(e) => setsearch(e.target.value)}
                     />
                     <select
@@ -70,7 +88,7 @@ const GiaoVien = () => {
                                     <input
                                         type="text"
                                         required
-                                        placeholder="MSSV"
+                                        placeholder="mscb"
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,
