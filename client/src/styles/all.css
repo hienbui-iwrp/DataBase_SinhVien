@@ -1,10 +1,10 @@
 :root {
-    --accept-color: #3ff462;
-    --cancel-color: #ff4f4f;
-    --field-color: #ceffbd;
-    --subField-color: #afebff;
-    --backgroundContent-color: #eee;
-    --border-color: #666;
+  --accept-color: #787878;
+  --cancel-color: #ff4f4f;
+  --field-color: #1bb0ff;
+  --subField-color: #afebff;
+  --backgroundContent-color: #eee;
+  --border-color: #666;
 }
 
 * {

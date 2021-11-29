@@ -23,20 +23,13 @@ namespace DataBase_SinhVien.Controllers
         }
 
         [HttpGet("khoa")]
-        public async Task<List<string>> GetAllFaculty()
+        public async Task<List<Khoa>> GetAllFaculty()
         {
-            string query = @" SELECT MaKhoa FROM Khoa;";
+            string query = @" SELECT MaKhoa, TenKhoa FROM Khoa;";
 
             DataTable data = await SqlExecutes.Instance.ExecuteQuery(query);
 
-            List<string> strs = new List<string>();
-
-            foreach (DataRow item in data.Rows)
-            {
-                strs.Add(item["MaKhoa"].ToString());
-            }
-
-            return strs;
+            return data.ConvertToList<Khoa>(); ;
         }
 
         [HttpPost]
