@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/student.css";
+import SinhViens from "./SinhViens";
 
 const SinhVien = () => {
     const [StudentTemp, setStudentTemp] = useState({});
@@ -27,6 +28,7 @@ const SinhVien = () => {
     };
 
     useEffect(() => {
+        console.log("reload");
         fetchData();
     }, []);
 
@@ -109,37 +111,12 @@ const SinhVien = () => {
                                     <button type="submit">Thêm</button>
                                 </td>
                             </tr>
-                            {Students.map((student, index) => {
-                                if (
-                                    student.mssv.toString().includes(search) ||
-                                    student.ten.toLowerCase().includes(search)
-                                )
-                                    if (
-                                        sex === "Giới tính" ||
-                                        sex === student.gioiTinh
-                                    )
-                                        if (
-                                            faculty === "Khoa" ||
-                                            faculty === student.khoa
-                                        )
-                                            return (
-                                                <tr key={index}>
-                                                    <td>{student.mssv}</td>
-                                                    <td>{student.ho}</td>
-                                                    <td>{student.ten}</td>
-                                                    <td>{student.tinhTrang}</td>
-                                                    <td>{student.ngaySinh}</td>
-                                                    <td>{student.gioiTinh}</td>
-                                                    <td>{student.hoKhau}</td>
-                                                    <td>{student.khoa}</td>
-                                                    <td>
-                                                        <button type="button">
-                                                            Lịch
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            );
-                            })}
+                            <SinhViens
+                                Students={Students}
+                                search={search}
+                                sex={sex}
+                                faculty={faculty}
+                            />
                         </tbody>
                     </table>
                 </form>
