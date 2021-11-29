@@ -9,7 +9,7 @@ namespace DataBase_SinhVien
 {
     public class SqlExecutes
     {
-        private string sqlDataSource = "Data Source=.;Initial Catalog=DBASS2; Integrated Security=true";
+        private string sqlDataSource = "Data Source=IWRP\\SQLEXPRESS;Integrated Security=True;Initial Catalog=DBASS2";
         static private SqlExecutes instance;
         static public SqlExecutes Instance
         {
@@ -21,21 +21,30 @@ namespace DataBase_SinhVien
 
         public async Task<DataTable> ExecuteQuery(string query)
         {
-            DataTable table = new DataTable();
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            try
             {
-                SqlDataReader myReader;
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                DataTable table = new DataTable();
+                using (SqlConnection myCon = new SqlConnection(sqlDataSource))
                 {
-                    myReader = await myCommand.ExecuteReaderAsync();
-                    table.Load(myReader);
+                    SqlDataReader myReader;
+                    myCon.Open();
+                    using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                    {
+                        myReader = await myCommand.ExecuteReaderAsync();
+                        table.Load(myReader);
 
-                    myReader.Close();
-                    myCon.Close();
+                        myReader.Close();
+                        myCon.Close();
+                    }
                 }
+                return table;
             }
-            return table;
+            catch (Exception e)
+            {
+                Console.WriteLine("---------------------------------------------------");
+                Console.WriteLine(e.Message);
+            }
+            return new DataTable();
         }
 
         public async Task<int> ExecuteNonQuery(string query)
@@ -51,6 +60,8 @@ namespace DataBase_SinhVien
                 }
             }
             return numberOfRows;
+
+
         }
     }
 

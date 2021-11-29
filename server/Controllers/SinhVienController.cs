@@ -15,7 +15,7 @@ namespace DataBase_SinhVien.Controllers
         [HttpGet]
         public async Task<List<SinhVien>> GetAllStudent()
         {
-            string query = "SELECT MSSV, Ho, Ten, TinhTrang, NgaySinh, GioiTinh, HoKhau, MaKhoa AS Khoa FROM SinhVien;";
+            string query = @" SELECT MSSV, Ho, Ten, TinhTrang, NgaySinh, GioiTinh, HoKhau, MaKhoa AS Khoa FROM SinhVien;";
 
             DataTable data = await SqlExecutes.Instance.ExecuteQuery(query);
 
@@ -25,7 +25,7 @@ namespace DataBase_SinhVien.Controllers
         [HttpGet("khoa")]
         public async Task<List<string>> GetAllFaculty()
         {
-            string query = "SELECT MaKhoa FROM Khoa;";
+            string query = @" SELECT MaKhoa FROM Khoa;";
 
             DataTable data = await SqlExecutes.Instance.ExecuteQuery(query);
 

@@ -6,7 +6,7 @@ import 'reactjs-popup/dist/index.css';
 
 export default function({subject, nhomMon}){
     return (
-        <div className = {`class-list ${subject.id}`}>
+        <div className = {`class-list ${subject.maMonHoc}`}>
             <div className = "class-list__new">
                 <span> Các lớp hiện có </span>
                 <NewNhomMon/>
@@ -20,7 +20,7 @@ export default function({subject, nhomMon}){
                 </tr>
                 {
                     nhomMon.map((nhom)=>{
-                        if(nhom.maMonHoc === subject.id)
+                        if(nhom.maMonHoc === subject.maMonHoc)
                             return <Schedule nhom = {nhom} />
                     })
                 }
@@ -34,8 +34,8 @@ function Schedule({nhom}){
     return (
         <div >
             <tr className = "subject__body">
-                <th className ="body__content">{nhom.name}</th>
-                <th className ="body__content">Kì của môn</th>
+                <th className ="body__content">{nhom.maNhom}</th>
+                <th className ="body__content">{nhom.kiHoc}</th>
                 <th className ="body__content">{nhom.soLuong}</th>
                 <th className ="body__content">{nhom.mscb}</th>
                 <th className ="field__content">
@@ -52,7 +52,7 @@ function Schedule({nhom}){
 
                 </tr>
                 <tr className = "subject__body" style = {{marginBottom: "20px"}}>
-                    <th className ="body__content">{nhom.ngay}</th>
+                    <th className ="body__content">{nhom.ngayTrongTuan}</th>
                     <th className ="body__content">{nhom.tietBatDau}</th>
                     <th className ="body__content">{nhom.tietKetThuc}</th>
                     <th className ="body__content">Phòng(Chưa thêm) </th>

@@ -5,93 +5,48 @@ import '../../styles/subject.css';
 import '../../styles/student.css';
 import '../../styles/all.css'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Info from './Info';
 import Detail from './Detail';
 
 const MonHoc = () => {
-    const [subjectList, setSubjectList] = useState(
-        [
-            {
-                id: "CO2017",
-                name: "Hệ điều hành",
-                tinChi: 3,
-                khoa: "Khoa học và kĩ thuật máy tính"
-            },
-            {
-                id: "CO2013",
-                name: "Hệ cơ sở dữ liệu",
-                tinChi: 4,
-                khoa: "Khoa học và kĩ thuật máy tính"
-            },
-            {
-                id: "ME1015",
-                name: "Nguyên lý máy",
-                tinChi: 4,
-                khoa: "Cơ khí"
-            },
-            {
-                id: "EE2005",
-                name: "Tín hiệu và hệ thống",
-                tinChi: 3,
-                khoa: "Điện - điện tử"
-            },
-        ]
-    )
-    const [nhomMon, setNhomMon] = useState([
-        {
-            name: 'L01',
-            kiHoc: '191',
-            ngay: 2,
-            tietBatDau: 2,
-            tietKetThuc: 4,
-            mscb: '008395',
-            maMonHoc: 'CO2017', 
-            soLuong: 0
-        },
-        {
-            name: 'L02',
-            kiHoc: '191',
-            ngay: 3,
-            tietBatDau: 7,
-            tietKetThuc: 9,
-            mscb: '002883',
-            maMonHoc: 'CO2017', 
-            soLuong: 0
-        },
-        {
-            name: 'L01',
-            kiHoc: '192',
-            ngay: 2,
-            tietBatDau: 2,
-            tietKetThuc: 4,
-            mscb: '008231',
-            maMonHoc: 'CO2013', 
-            soLuong: 0
-        },
-        {
-            name: 'L01',
-            kiHoc: '201',
-            ngay: 5,
-            tietBatDau: 2,
-            tietKetThuc: 4,
-            mscb: '002603',
-            maMonHoc: 'ME1015', 
-            soLuong: 0
-        },
-        {
-            name: 'L01',
-            kiHoc: '192',
-            ngay: 4,
-            tietBatDau: 5,
-            tietKetThuc: 6,
-            mscb: '002765',
-            maMonHoc: 'EE2005', 
-            soLuong: 0
-        }
-    ])
-    
+    const [subjectList, setSubjectList] = useState( []);
+    const [nhomMon, setNhomMon] = useState([]);
+    const [giangVien, setGiangVien] = useState([]);
+    const [khoa, setKhoa] = useState([]);
+    const [hocMon, setHocMon] = useState([])
+    const fetchData = () => {
+        var requestOptions = {
+            method: "GET",
+            redirect: "follow",
+        };
+
+        fetch("https://localhost:5001/api/monhoc", requestOptions)
+            .then((response) => response.json())
+            .then((result) => setSubjectList(result))
+            .catch((error) => console.log("error", error));
+        fetch("https://localhost:5001/api/monhoc/nhommon", requestOptions)
+            .then((response) => response.json())
+            .then((result) => setNhomMon(result))
+            .catch((error) => console.log("error", error));
+        fetch("https://localhost:5001/api/sinhvien/khoa", requestOptions)
+            .then((response) => response.json())
+            .then((result) => setKhoa(result))
+            .catch((error) => console.log("error", error));
+        fetch("https://localhost:5001/api/monhoc/hocmon", requestOptions)
+            .then((response) => response.json())
+            .then((result) => setHocMon(result))
+            .catch((error) => console.log("error", error));
+        fetch("https://localhost:5001/api/giangvien", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {setGiangVien(result); console.log(result);})
+            .catch((error) => console.log("error", error));
+    };
+    useEffect(()=>{
+        fetchData();
+    },[])
+    // console.log(giangVien);
     return (
         <div className="student">
             <div className="student-header">

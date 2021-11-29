@@ -8,8 +8,7 @@ export default function({subject}){
     return (
         <tr className = "subject__body"
             onClick = {()=>{
-                        let classList = document.querySelector(`.${subject.id}`)
-                        console.log(classList);
+                        let classList = document.querySelector(`.${subject.maMonHoc}`)
                         if (!detail) {
                             classList.classList.add('class-list--active');
                             detail = true;
@@ -20,8 +19,8 @@ export default function({subject}){
                         }
                     }}
         >
-            <th className="body__content">{subject.id}</th>
-            <th className="body__content">{subject.name}</th>
+            <th className="body__content">{subject.maMonHoc}</th>
+            <th className="body__content">{subject.ten}</th>
             <th className="body__content">{subject.tinChi}</th>
             <th className="body__content body__content--long">{subject.khoa}</th>
             <th className="body__content" >
