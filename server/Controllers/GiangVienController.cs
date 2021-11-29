@@ -40,7 +40,7 @@ namespace DataBase_SinhVien.Controllers
             string query = @$"INSERT INTO GiangVien(MSCB, Ho, Ten, ChuyenMon, GioiTinh, CMNDCCCD, NgaySinh, DiaChiTamTru, HoKhau, EmailTruong, EmailCaNhan, HocHam, MaKhoa)
                             VALUES
                             (
-                            N'{giangVien.MSCB}', N'{giangVien.Ho}', N'{giangVien.Ten}', '', N'{giangVien.GioiTinh}', '', N'{giangVien.NgaySinh}', '', '', '', '', N'{giangVien.HocHam}', N'{giangVien.MaKhoa}'
+                            N'{giangVien.MSCB}', N'{giangVien.Ho}', N'{giangVien.Ten}', N'{giangVien.ChuyenMon}', N'{giangVien.GioiTinh}', '', N'{giangVien.NgaySinh}', '', '', '', '', N'{giangVien.HocHam}', N'{giangVien.MaKhoa}'
                             );";
 
             int n = await SqlExecutes.Instance.ExecuteNonQuery(query);

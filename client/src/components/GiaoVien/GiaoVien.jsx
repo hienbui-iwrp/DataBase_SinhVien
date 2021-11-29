@@ -6,7 +6,16 @@ const GiaoVien = () => {
     const [search, setsearch] = useState("");
     const [Faculties, setFaculties] = useState([]);
     const [faculty, setfaculty] = useState("Khoa");
-    const [TeacherTemp, setTeacherTemp] = useState({});
+    const [TeacherTemp, setTeacherTemp] = useState({
+        mscb: "",
+        ho: "",
+        ten: "",
+        chuyenMon: "",
+        gioiTinh: "Giới tính",
+        ngaySinh: "",
+        hocHam: "",
+        maKhoa: "Khoa",
+    });
     const [Teachers, setTeachers] = useState([]);
 
     const InsertGiaoVien = (e) => {
@@ -34,8 +43,20 @@ const GiaoVien = () => {
 
         fetch("https://localhost:5001/api/giangvien", requestOptions)
             .then((response) => response.text())
-            .then((result) => console.log(result))
+            .then((result) => {
+                if (result === "1") setTeachers([...Teachers, TeacherTemp]);
+            })
             .catch((error) => console.log("error", error));
+        setTeacherTemp({
+            mscb: "",
+            ho: "",
+            ten: "",
+            chuyenMon: "",
+            gioiTinh: "Giới tính",
+            ngaySinh: "",
+            hocHam: "",
+            maKhoa: "Khoa",
+        });
     };
 
     const fetchData = () => {
@@ -115,6 +136,7 @@ const GiaoVien = () => {
                                         type="text"
                                         required
                                         placeholder="MSSV"
+                                        value={TeacherTemp.mscb}
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,
@@ -128,6 +150,7 @@ const GiaoVien = () => {
                                         type="text"
                                         required
                                         placeholder="Họ"
+                                        value={TeacherTemp.ho}
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,
@@ -141,6 +164,7 @@ const GiaoVien = () => {
                                         type="text"
                                         required
                                         placeholder="Tên"
+                                        value={TeacherTemp.ten}
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,
@@ -153,7 +177,7 @@ const GiaoVien = () => {
                                     <input
                                         type="date"
                                         required
-                                        placeholder="Giới tính"
+                                        value={TeacherTemp.ngaySinh}
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,
@@ -164,6 +188,7 @@ const GiaoVien = () => {
                                 </td>
                                 <td>
                                     <select
+                                        value={TeacherTemp.gioiTinh}
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,
@@ -183,7 +208,8 @@ const GiaoVien = () => {
                                     <input
                                         type="text"
                                         required
-                                        placeholder="Hộ Khẩu"
+                                        placeholder="Học hàm, học vị"
+                                        value={TeacherTemp.hocHam}
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,
@@ -196,6 +222,7 @@ const GiaoVien = () => {
                                     <select
                                         name="Khoa"
                                         id="Khoa"
+                                        value={TeacherTemp.maKhoa}
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,
@@ -221,6 +248,7 @@ const GiaoVien = () => {
                                         type="text"
                                         required
                                         placeholder="Chuyên môn"
+                                        value={TeacherTemp.chuyenMon}
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,

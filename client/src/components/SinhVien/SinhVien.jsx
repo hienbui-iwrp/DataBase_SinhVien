@@ -3,7 +3,17 @@ import "../../styles/student.css";
 import SinhViens from "./SinhViens";
 
 const SinhVien = () => {
-    const [StudentTemp, setStudentTemp] = useState({});
+    const [StudentTemp, setStudentTemp] = useState({
+        mssv: "",
+        ho: "",
+        ten: "",
+        tinhTrang: "Tình Trạng",
+        ngaySinh: "",
+        gioiTinh: "Giới tính",
+        hoKhau: "",
+        khoa: "Khoa",
+        tenLopChuNhiem: "Lớp",
+    });
     const [sex, setsex] = useState("Giới tính");
     const [search, setsearch] = useState("");
     const [Students, setStudents] = useState([]);
@@ -59,8 +69,21 @@ const SinhVien = () => {
 
         fetch("https://localhost:5001/api/sinhvien", requestOptions)
             .then((response) => response.text())
-            .then((result) => console.log(result))
+            .then((result) => {
+                if (result === "1") setStudents([...Students, StudentTemp]);
+            })
             .catch((error) => console.log("error", error));
+        setStudentTemp({
+            mssv: "",
+            ho: "",
+            ten: "",
+            tinhTrang: "Tình Trạng",
+            ngaySinh: "",
+            gioiTinh: "Giới tính",
+            hoKhau: "",
+            khoa: "Khoa",
+            tenLopChuNhiem: "Lớp",
+        });
     };
 
     useEffect(() => {
@@ -125,6 +148,7 @@ const SinhVien = () => {
                                         type="text"
                                         required
                                         placeholder="MSSV"
+                                        value={StudentTemp.mssv}
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
@@ -138,6 +162,7 @@ const SinhVien = () => {
                                         type="text"
                                         required
                                         placeholder="Họ"
+                                        value={StudentTemp.ho}
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
@@ -151,6 +176,7 @@ const SinhVien = () => {
                                         type="text"
                                         required
                                         placeholder="Tên"
+                                        value={StudentTemp.ten}
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
@@ -161,10 +187,11 @@ const SinhVien = () => {
                                 </td>
                                 <td>
                                     <select
+                                        value={StudentTemp.tinhTrang}
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
-                                                gioiTinh: e.target.value,
+                                                tinhTrang: e.target.value,
                                             })
                                         }
                                     >
@@ -182,6 +209,7 @@ const SinhVien = () => {
                                         type="date"
                                         required
                                         placeholder="Ngày sinh"
+                                        value={StudentTemp.ngaySinh}
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
@@ -192,6 +220,7 @@ const SinhVien = () => {
                                 </td>
                                 <td>
                                     <select
+                                        value={StudentTemp.gioiTinh}
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
@@ -212,6 +241,7 @@ const SinhVien = () => {
                                         type="text"
                                         required
                                         placeholder="Hộ Khẩu"
+                                        value={StudentTemp.hoKhau}
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
@@ -222,8 +252,7 @@ const SinhVien = () => {
                                 </td>
                                 <td>
                                     <select
-                                        name="Khoa"
-                                        id="Khoa"
+                                        value={StudentTemp.khoa}
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
@@ -246,8 +275,7 @@ const SinhVien = () => {
                                 </td>
                                 <td>
                                     <select
-                                        name="Khoa"
-                                        id="Khoa"
+                                        value={StudentTemp.tenLopChuNhiem}
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
