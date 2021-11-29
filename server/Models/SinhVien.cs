@@ -12,5 +12,7 @@ namespace DataBase_SinhVien
         public string GioiTinh { get; set; }
         public string HoKhau { get; set; }
         public string Khoa { get; set; }
+
+        public string TenLopChuNhiem { get; set; }
     }
 }

@@ -21,6 +21,7 @@ const SinhViens = ({ Students, search, sex, faculty }) => {
                                     <td>{student.gioiTinh}</td>
                                     <td>{student.hoKhau}</td>
                                     <td>{student.khoa}</td>
+                                    <td>{student.tenLopChuNhiem}</td>
                                     <td>
                                         <ThoiKhoaBieu mssv={student.mssv} />
                                     </td>
