@@ -25,9 +25,9 @@ namespace DataBase_SinhVien.Controllers
         [HttpGet("search")]
         public async Task<List<SinhVien>> GetStudent(string s, string makhoa, string gioitinh)
         {
-            if(makhoa == "Khoa")
+            if (makhoa == "Khoa")
                 makhoa = "";
-            if(gioitinh == "Giới tính")
+            if (gioitinh == "Giới tính")
                 gioitinh = "";
             string query = $"SELECT MSSV, Ho, Ten, TinhTrang, NgaySinh, GioiTinh, HoKhau, MaKhoa AS Khoa, TenLopChuNhiem from SinhVien where (MSSV like N'%{s}%' or Ten like N'%{s}%') and MaKhoa like '%{makhoa}%' and GioiTinh like N'%{gioitinh}%';";
             DataTable data = await SqlExecutes.Instance.ExecuteQuery(query);
@@ -36,13 +36,19 @@ namespace DataBase_SinhVien.Controllers
         }
 
         [HttpGet("khoa")]
-        public async Task<List<Khoa>> GetAllFaculty()
+        public async Task<List<string>> GetAllFaculty()
         {
-            string query = @" SELECT MaKhoa, TenKhoa FROM Khoa;";
-
+            string query = @" SELECT MaKhoa FROM Khoa;";
             DataTable data = await SqlExecutes.Instance.ExecuteQuery(query);
 
-            return data.ConvertToList<Khoa>(); ;
+            List<string> strs = new List<string>();
+
+            foreach (DataRow item in data.Rows)
+            {
+                strs.Add(item["MaKhoa"].ToString());
+            }
+
+            return strs;
         }
 
         [HttpPost]
