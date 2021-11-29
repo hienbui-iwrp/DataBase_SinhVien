@@ -24,15 +24,15 @@ export default function({subject, setRender}){
         >
             <th className="body__content">{subject.maMonHoc}</th>
             <th className="body__content">{subject.ten}</th>
-            <th className="body__content">{subject.tinChi}</th>
+            <th className="body__content text--center">{subject.tinChi}</th>
             {/* <th className="body__content body__content--long">{
                 getTenKhoa(subject, khoa, giangVien, nhomMon)
             }</th> */}
-            <th className="body__content body__content--short" >
+            <th className="body__content body__content--short text--center" >
                 <EditMonHoc subject = {subject} setRender={setRender}/>
             </th>
-            <th className="body__content body__content--short">
-            <Popup trigger={<button className = "button--delete">X</button>} modal>
+            <th className="body__content body__content--short text--center">
+            <Popup trigger={<button className = "button--delete ">Xóa</button>} modal>
                 {close=>(
                     <div>
                         <div className = "modal-header">Xóa môn?</div>

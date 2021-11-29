@@ -6,16 +6,22 @@
 .subject__field {
   display: flex;
   justify-content: left;
-  border: 2px solid;
+  border-top: 1px solid rgba(0, 0, 0, 0.075);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.075);
   background-color: var(--field-color);
+  padding: 0 10px;
 }
 
 .field__content,
 .body__content {
   width: calc(100% / 4);
   padding: 5px 10px;
-  text-align: center;
+  /* text-align: center; */
   z-index: 10;
+}
+
+.text--center {
+  text-align: center;
 }
 
 .body__content--long {
@@ -27,14 +33,19 @@
 }
 
 .subject-list {
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
 }
 
 .subject__body {
-  border: 1px solid #000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.075);
   width: 100%;
   display: flex;
   background-color: var(--backgroundContent-color);
+  padding: 0 10px;
+}
+
+.subject__body:hover {
+  background-color: var(--hover-color);
 }
 
 .body__content {
@@ -46,16 +57,21 @@
   padding: 0px 15px;
   border-radius: 5px;
   /* border: none; */
-  color: #fff;
+  color: rgb(59, 59, 59);
   font-weight: 700;
 }
 
+.button--edit:hover,
+.button--delete:hover {
+  background-color: var(--button-hover-color);
+}
+
 .button--edit {
-  background-color: var(--accept-color);
+  /* background-color: var(--accept-color); */
 }
 
 .button--delete {
-  background-color: var(--cancel-color);
+  /* background-color: var(--accept-color); */
 }
 
 /* ----Nhom lop */
@@ -97,7 +113,12 @@
 
 .class-list .subject__field {
   background-color: #fff;
-  border-top: 1px solid;
+  /* border-top: 1px solid; */
+}
+
+.class-list__sched .subject__field {
+  background-color: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.075);
 }
 
 .class-list .field__content,

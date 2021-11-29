@@ -24,6 +24,18 @@ namespace DataBase_SinhVien.Controllers
             return data.ConvertToList<MonHoc>();
         }
 
+        [HttpGet("search")]
+        public async Task<List<MonHoc>> GetSearchMonHoc(string s)
+        {
+            string query = @$"SELECT MaMonHoc, Ten, TinChi, HeSoBtl, HeSoBt, HeSoKt, HeSoTn, HeSoThi 
+                            FROM MonHoc
+                            where Ten like N'%{s}%'";
+
+            DataTable data = await SqlExecutes.Instance.ExecuteQuery(query);
+
+            return data.ConvertToList<MonHoc>();
+        }
+
         [HttpGet("nhommon")]
         public async Task<List<NhomMon>> GetAllNhomMon()
         {

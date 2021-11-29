@@ -10,8 +10,8 @@ namespace DataBase_SinhVien
     public class SqlExecutes
     {
         // private string sqlDataSource = "Data Source=/IWRP;Integrated Security=True;Initial Catalog=DBASS2";
-        // private string sqlDataSource = "Data Source=IWRP\\SQLEXPRESS;Integrated Security=True;Initial Catalog=DBASS2";
-        private string sqlDataSource = "Data Source=.;Integrated Security=True;Initial Catalog=DBASS2";
+        private string sqlDataSource = "Data Source=IWRP\\SQLEXPRESS;Integrated Security=True;Initial Catalog=DBASS2";
+        // private string sqlDataSource = "Data Source=.;Integrated Security=True;Initial Catalog=DBASS2";
         static private SqlExecutes instance;
         static public SqlExecutes Instance
         {
@@ -87,10 +87,11 @@ namespace DataBase_SinhVien
 
             foreach (PropertyInfo pro in temp.GetProperties())
             {
-                try {
+                try
+                {
                     pro.SetValue(obj, dr[pro.Name], null);
                 }
-                catch{}
+                catch { }
             }
             return obj;
         }

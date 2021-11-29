@@ -44,6 +44,22 @@ const MonHoc = () => {
             .then((result) => {setGiangVien(result)})
             .catch((error) => console.log("error", error));
     };
+
+    const SearchMonHoc = (search) => {
+        var requestOptions = {
+            method: "GET",
+            redirect: "follow",
+        };
+
+        fetch(
+            `https://localhost:5001/api/monhoc/search?s=${search}`,
+            requestOptions
+        )
+            .then((response) => response.json())
+            .then((result) => setSubjectList(result))
+            .catch((error) => console.log("error", error));
+    };
+
     useEffect(()=>{
         fetchData();
     },[render])
@@ -53,7 +69,10 @@ const MonHoc = () => {
             <div className="student-header">
                 <input
                     type="text"
-                    placeholder="Tìm bằng tên, mã môn học"
+                    placeholder="Tìm bằng tên môn học"
+                    onChange = {e=>{
+                        SearchMonHoc(e.target.value);
+                    }}
                 />
             </div>
             <div className="student-list">
@@ -61,8 +80,8 @@ const MonHoc = () => {
                     <tr className = "subject__field">
                         <th className="field__content">Mã môn học</th>
                         <th className="field__content">Tên môn học</th>
-                        <th className="field__content">Số tín chỉ</th>
-                        <th className="field__content">
+                        <th className="field__content text--center">Số tín chỉ</th>
+                        <th className="field__content text--center">
                             <NewMonHoc 
                                 subjectList = {subjectList} 
                                 setRender = {setRender}
