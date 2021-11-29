@@ -282,12 +282,7 @@ const GiaoVien = () => {
                                     <button type="submit">Thêm</button>
                                 </td>
                             </tr>
-                            <GiaoViens
-                                Teachers={Teachers}
-                                search={search}
-                                sex={sex}
-                                faculty={faculty}
-                            />
+                            <GiaoViens Teachers={Teachers} />
                         </tbody>
                     </table>
                 </form>
