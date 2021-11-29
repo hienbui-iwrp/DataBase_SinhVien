@@ -20,7 +20,7 @@ const ThoiKhoaBieu = ({ mssv }) => {
     };
 
     useEffect(() => {
-        fetchData();
+        // fetchData();
     }, []);
 
     return (

@@ -60,6 +60,21 @@ const GiaoVien = () => {
         });
     };
 
+    const SearchGiaoVien = (search, faculty, sex) => {
+        var requestOptions = {
+            method: "GET",
+            redirect: "follow",
+        };
+
+        fetch(
+            `https://localhost:5001/api/giangvien/search?s=${search}&makhoa=${faculty}&gioitinh=${sex}`,
+            requestOptions
+        )
+            .then((response) => response.json())
+            .then((result) => setTeachers(result))
+            .catch((error) => console.log("error", error));
+    };
+
     const fetchData = () => {
         var requestOptions = {
             method: "GET",
@@ -88,12 +103,16 @@ const GiaoVien = () => {
                     <input
                         type="text"
                         placeholder="Search mssv, tên"
-                        onChange={(e) => setsearch(e.target.value)}
+                        onChange={(e) => {
+                            setsearch(e.target.value);
+                            SearchGiaoVien(e.target.value, faculty, sex);
+                        }}
                     />
                     <select
-                        name="Khoa"
-                        id="Khoa"
-                        onChange={(e) => setfaculty(e.target.value)}
+                        onChange={(e) => {
+                            setfaculty(e.target.value);
+                            SearchGiaoVien(search, e.target.value, sex);
+                        }}
                     >
                         <option value="Khoa">Khoa</option>
                         {Faculties.map((faculty, index) => {
@@ -105,9 +124,10 @@ const GiaoVien = () => {
                         })}
                     </select>
                     <select
-                        name=""
-                        id=""
-                        onChange={(e) => setsex(e.target.value)}
+                        onChange={(e) => {
+                            setsex(e.target.value);
+                            SearchGiaoVien(search, faculty, e.target.value);
+                        }}
                     >
                         <option value="Giới tính">Giới tính</option>
                         <option value="Nam">Nam</option>
@@ -262,12 +282,7 @@ const GiaoVien = () => {
                                     <button type="submit">Thêm</button>
                                 </td>
                             </tr>
-                            <GiaoViens
-                                Teachers={Teachers}
-                                search={search}
-                                sex={sex}
-                                faculty={faculty}
-                            />
+                            <GiaoViens Teachers={Teachers} />
                         </tbody>
                     </table>
                 </form>

@@ -43,6 +43,21 @@ const SinhVien = () => {
             .catch((error) => console.log("error", error));
     };
 
+    const SearchSinhvien = (search, faculty, sex) => {
+        var requestOptions = {
+            method: "GET",
+            redirect: "follow",
+        };
+
+        fetch(
+            `https://localhost:5001/api/sinhvien/search?s=${search}&makhoa=${faculty}&gioitinh=${sex}`,
+            requestOptions
+        )
+            .then((response) => response.json())
+            .then((result) => setStudents(result))
+            .catch((error) => console.log("error", error));
+    };
+
     const InsertSinhVien = (e) => {
         e.preventDefault();
         var myHeaders = new Headers();
@@ -98,12 +113,18 @@ const SinhVien = () => {
                     <input
                         type="text"
                         placeholder="Search mssv, tên"
-                        onChange={(e) => setsearch(e.target.value)}
+                        onChange={(e) => {
+                            setsearch(e.target.value);
+                            SearchSinhvien(e.target.value, faculty, sex);
+                        }}
                     />
                     <select
                         name="Khoa"
                         id="Khoa"
-                        onChange={(e) => setfaculty(e.target.value)}
+                        onChange={(e) => {
+                            setfaculty(e.target.value);
+                            SearchSinhvien(search, e.target.value, sex);
+                        }}
                     >
                         <option value="Khoa">Khoa</option>
                         {Faculties.map((faculty, index) => {
@@ -117,7 +138,10 @@ const SinhVien = () => {
                     <select
                         name=""
                         id=""
-                        onChange={(e) => setsex(e.target.value)}
+                        onChange={(e) => {
+                            setsex(e.target.value);
+                            SearchSinhvien(search, faculty, e.target.value);
+                        }}
                     >
                         <option value="Giới tính">Giới tính</option>
                         <option value="Nam">Nam</option>
@@ -303,12 +327,7 @@ const SinhVien = () => {
                                     <button type="submit">Thêm</button>
                                 </td>
                             </tr>
-                            <SinhViens
-                                Students={Students}
-                                search={search}
-                                sex={sex}
-                                faculty={faculty}
-                            />
+                            <SinhViens Students={Students} />
                         </tbody>
                     </table>
                 </form>
