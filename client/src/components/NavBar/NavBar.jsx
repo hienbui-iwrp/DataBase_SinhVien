@@ -32,7 +32,7 @@ const NavBar = () => {
                                     to="/GiaoVien"
                                     activeClassName="active"
                                 >
-                                    Giáo viên
+                                    Giảng viên
                                 </NavLink>
                             </li>
                             <li className="nav-item">

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../../styles/student.css";
 import GiaoViens from "./Giaoviens";
 
 const GiaoVien = () => {
@@ -114,7 +115,7 @@ const GiaoVien = () => {
                         <option value="Khác">Khác</option>
                     </select>
                 </div>
-                <form className="student-list" onSubmit={InsertGiaoVien}>
+                <form className="teacher-list" onSubmit={InsertGiaoVien}>
                     <table className="table table-hover">
                         <thead>
                             <tr>

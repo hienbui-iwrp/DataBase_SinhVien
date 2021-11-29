@@ -137,7 +137,7 @@ const SinhVien = () => {
                                 <th scope="col">Giới tính</th>
                                 <th scope="col">Hộ Khẩu</th>
                                 <th scope="col">Khoa</th>
-                                <th scope="col">Tên lớp chủ nhiệm</th>
+                                <th scope="col">Lớp</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
