@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GiaoViens from "./Giaoviens";
 
 const GiaoVien = () => {
@@ -10,6 +10,10 @@ const GiaoVien = () => {
     const [Teachers, setTeachers] = useState([]);
 
     const InsertGiaoVien = () => {};
+
+    const fetchData = () => {};
+
+    useEffect(() => {}, []);
 
     return (
         <>
