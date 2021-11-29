@@ -79,10 +79,9 @@ namespace DataBase_SinhVien.Controllers
         [HttpPost("nhommon")]
         public async Task<int> NewNhomMon(NhomMon nhomMon)
         {
-            int soKhong = -1;
             // Console.WriteLine(nhomMon.MaMonHoc);
-            string query = @$"insert into NhomMon(MaMonHoc, MaNhom, KiHoc, NgayTrongTuan, TietBatDau, TietKetThuc, MSCB, SoLuong)
-                            values ('{nhomMon.MaMonHoc}','{nhomMon.MaNhom}','{nhomMon.KiHoc}','{nhomMon.NgayTrongTuan}','{nhomMon.TietBatDau}','{nhomMon.TietKetThuc}','{nhomMon.MSCB}',{nhomMon.SoLuong} )";
+            string query = @$"insert into NhomMon(SoLuong,MaMonHoc, MaNhom, KiHoc, NgayTrongTuan, TietBatDau, TietKetThuc, MSCB)
+                            values ('{nhomMon.SoLuong}' ,'{nhomMon.MaMonHoc}','{nhomMon.MaNhom}','{nhomMon.KiHoc}','{nhomMon.NgayTrongTuan}','{nhomMon.TietBatDau}','{nhomMon.TietKetThuc}','{nhomMon.MSCB}')";
             int ret = await SqlExecutes.Instance.ExecuteNonQuery(query);
             DataTable data = await SqlExecutes.Instance.ExecuteQuery(query);
             return ret;

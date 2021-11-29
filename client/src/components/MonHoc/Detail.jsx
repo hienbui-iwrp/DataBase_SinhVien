@@ -5,12 +5,12 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
 export default function({subject, nhomMon, giangVien, hocMon, setRender}){
-    // console.log(nhomMon)
+
     return (
         <div className = {`class-list ${subject.maMonHoc}`}>
             <div className = "class-list__new">
                 <span> Các lớp hiện có </span>
-                <NewNhomMon giangVien = {giangVien} nhomMon = {nhomMon} setRender= {setRender}/>
+                <NewNhomMon giangVien = {giangVien} nhomMon = {nhomMon} setRender= {setRender} subject = {subject}/>
             </div>
             <div className = "class-list__field">
                 <tr className = "subject__field" >
@@ -84,8 +84,20 @@ function Schedule({nhom, giangVien, hocMon, setRender}){
 }
 
 
-function NewNhomMon({giangVien, nhomMon, setRender}){
-    let nhomMoi = nhomMon[0];
+function NewNhomMon({giangVien, nhomMon, setRender, subject}){
+    let nhomMoi = {
+        nhomMon: "",
+        kiHoc: "",
+        mscb:"001253",
+        ngayTrongTuan:2,
+        tietBatDau:0,
+        tietKetThuc:0,
+        maMonHoc: subject.maMonHoc,
+        soLuong: 0
+    }
+    
+    // console
+    
     // console.log(setRender);
     return (
         <Popup trigger={<button className = "button--edit" >Thêm mới</button>} modal>
@@ -146,6 +158,7 @@ function NewNhomMon({giangVien, nhomMon, setRender}){
                     <div className = "modal-button">
                         <button className = "button--delete" type = "button" onClick ={close}> Hủy</button>
                         <button className = "button--edit" type = "submit" onClick = {(e)=>{
+                            console.log(nhomMoi.maMonHoc)
                             e.preventDefault();
                             insertNhomMon(nhomMoi);
                             close()

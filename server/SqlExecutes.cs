@@ -86,7 +86,10 @@ namespace DataBase_SinhVien
 
             foreach (PropertyInfo pro in temp.GetProperties())
             {
-                pro.SetValue(obj, dr[pro.Name], null);
+                try {
+                    pro.SetValue(obj, dr[pro.Name], null);
+                }
+                catch{}
             }
             return obj;
         }
