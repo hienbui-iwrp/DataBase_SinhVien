@@ -15,6 +15,7 @@
   width: calc(100% / 6);
   padding: 5px 10px;
   text-align: center;
+  z-index: 10;
 }
 
 .body__content--long {
@@ -42,11 +43,11 @@
 
 .button--edit,
 .button--delete {
-  padding: 0px 10px;
+  padding: 0px 15px;
   border-radius: 5px;
   border: none;
   color: #fff;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .button--edit {
@@ -64,6 +65,19 @@
 
 .class-list--active {
   display: block !important;
+  animation: forwards growDown 0.15s ease-in-out;
+}
+
+@keyframes growDown {
+  0% {
+    z-index: 5;
+    transform: translateY(-60px);
+  }
+
+  100% {
+    z-index: 5;
+    transform: translateY(0);
+  }
 }
 
 .class-list__new {
@@ -88,12 +102,54 @@
 
 .class-list .field__content,
 .class-list .body__content {
-  width: calc(100% / 4);
+  width: calc(100% / 5);
   padding: 5px 10px;
   text-align: center;
 }
 
 .class-list__sched {
-  width: 80%;
+  width: 90%;
   margin: auto;
+}
+
+/* modal */
+
+.modal-box {
+  padding: 10px;
+}
+
+.modal-header {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.modal-body {
+  padding: 5px;
+}
+
+.modal-input {
+  display: flex;
+}
+
+.input-field {
+  flex: 0.3;
+}
+
+.input-body {
+  flex: 0.7;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid var(--border-color);
+  padding: 2px 5px;
+}
+
+.modal-button {
+  display: flex;
+  justify-content: end;
+}
+
+.modal-button .button--delete,
+.modal-button .button--edit {
+  min-width: 100px;
+  margin-left: 20px;
 }

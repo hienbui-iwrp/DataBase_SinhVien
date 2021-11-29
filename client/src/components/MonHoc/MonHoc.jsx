@@ -1,4 +1,6 @@
 import React from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import '../../styles/subject.css';
 import '../../styles/student.css';
 import '../../styles/all.css'
@@ -89,6 +91,7 @@ const MonHoc = () => {
             soLuong: 0
         }
     ])
+    
     return (
         <div className="student">
             <div className="student-header">
@@ -111,6 +114,10 @@ const MonHoc = () => {
                         <th className="field__content">Tên môn học</th>
                         <th className="field__content">Số tín chỉ</th>
                         <th className="field__content body__content--long">Khoa</th>
+                        <th className="field__content"></th>
+                        <th className="field__content">
+                            <NewMonHoc subjectList = {subjectList} setSubjectList = {setSubjectList}/>
+                        </th>
                     </tr>
                     <div className = "subject-list">
                         {
@@ -125,9 +132,71 @@ const MonHoc = () => {
                         }
                     </div>
                 </div>
-            </div>   
+            </div>  
+            
         </div>
     )
 }
 
 export default MonHoc
+
+function NewMonHoc({subjectList, setSubjectList}){
+    let newSubject = subjectList[0];
+    return (
+        <Popup trigger={<button className = "button--edit">Thêm môn học</button>} modal>
+            <div className = "modal-box">
+                <div className = "modal-header">
+                    Môn học mới
+                </div>
+                <div className = "modal-body">
+                <form >
+                    <p className = "modal-input">
+                        <label className = "input-field">Mã môn học</label>
+                        <input type = "text" className = "input-body" required ></input>
+                    </p>
+                    <p className = "modal-input">
+                        <label className = "input-field">Tên môn học</label>
+                        <input type = "text" className = "input-body" required ></input>
+                    </p>
+                    <p className = "modal-input">
+                        <label className = "input-field">Số tín chỉ</label>
+                        <input type = "text" className = "input-body" required ></input>
+                    </p>
+                    <p className = "modal-input">
+                        <label className = "input-field">Khoa</label>
+                        <select className = "input-body">
+                            <option>Khoa 1</option>
+                            <option>Khoa 2</option>
+                        </select>
+                    </p>
+                    <p className = "modal-input">
+                        <label className = "input-field">Hệ số điểm BTL</label>
+                        <input type = "number" className = "input-body" required></input>
+                    </p>
+                    <p className = "modal-input">
+                        <label className = "input-field">Hệ số điểm BT</label>
+                        <input type = "number" className = "input-body" required></input>
+                    </p>
+                    <p className = "modal-input">
+                        <label className = "input-field">Hệ số điểm KT</label>
+                        <input type = "number" className = "input-body" required></input>
+                    </p>
+                    <p className = "modal-input">
+                        <label className = "input-field">Hệ số điểm TN</label>
+                        <input type = "number" className = "input-body" required></input>
+                    </p>
+                    <p className = "modal-input">
+                        <label className = "input-field">Hệ số điểm Thi</label>
+                        <input type = "number" className = "input-body" required></input>
+                    </p>
+
+                    <div className = "modal-button">
+                        <button className = "button--delete" type = "button"> Hủy</button>
+                        <button className = "button--edit" type = "submit"> Lưu</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </Popup> 
+    )
+}
