@@ -11,9 +11,26 @@ const GiaoVien = () => {
 
     const InsertGiaoVien = () => {};
 
-    const fetchData = () => {};
+    const fetchData = () => {
+        var requestOptions = {
+            method: "GET",
+            redirect: "follow",
+        };
 
-    useEffect(() => {}, []);
+        fetch("https://localhost:5001/api/sinhvien", requestOptions)
+            .then((response) => response.json())
+            .then((result) => setTeachers(result))
+            .catch((error) => console.log("error", error));
+
+        fetch("https://localhost:5001/api/sinhvien/khoa", requestOptions)
+            .then((response) => response.json())
+            .then((result) => setFaculties(result))
+            .catch((error) => console.log("error", error));
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <>
