@@ -21,5 +21,17 @@ namespace DataBase_SinhVien.Controllers
 
             return data.ConvertToList<GiangVien>();
         }
+
+        [HttpGet("lichday")]
+        public async Task<List<ThoiKhoaBieu>> GetLichDays(string mscb)
+        {
+            string query = $@"select distinct MonHoc.MaMonHoc, MonHoc.Ten, MonHoc.TinChi, NhomMon.MaNhom, NhomMon.TietBatDau, NhomMon.TietKetThuc, NhomMon.NgayTrongTuan, HocMon.TenPhong
+                            from HocMon, NhomMon, MonHoc
+                            where MonHoc.MaMonHoc = NhomMon.MaMonHoc and HocMon.MaMonHoc = NhomMon.MaMonHoc and HocMon.MaNhom = NhomMon.MaNhom and NhomMon.MSCB = '{mscb}';";
+
+            DataTable data = await SqlExecutes.Instance.ExecuteQuery(query);
+
+            return data.ConvertToList<ThoiKhoaBieu>();
+        }
     }
 }

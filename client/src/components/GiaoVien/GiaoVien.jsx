@@ -17,7 +17,7 @@ const GiaoVien = () => {
             redirect: "follow",
         };
 
-        fetch("https://localhost:5001/api/sinhvien", requestOptions)
+        fetch("https://localhost:5001/api/giangvien", requestOptions)
             .then((response) => response.json())
             .then((result) => setTeachers(result))
             .catch((error) => console.log("error", error));

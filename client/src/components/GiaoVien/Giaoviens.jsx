@@ -1,4 +1,5 @@
 import React from "react";
+import LichDay from "./LichDay";
 
 const GiaoViens = ({ Teachers, search, sex, faculty }) => {
     return (
@@ -9,7 +10,7 @@ const GiaoViens = ({ Teachers, search, sex, faculty }) => {
                     teacher.ten.toLowerCase().includes(search)
                 )
                     if (sex === "Giới tính" || sex === teacher.gioiTinh)
-                        if (faculty === "Khoa" || faculty === teacher.khoa)
+                        if (faculty === "Khoa" || faculty === teacher.maKhoa)
                             return (
                                 <tr key={index}>
                                     <td>{teacher.mscb}</td>
@@ -21,7 +22,7 @@ const GiaoViens = ({ Teachers, search, sex, faculty }) => {
                                     <td>{teacher.maKhoa}</td>
                                     <td>{teacher.chuyenMon}</td>
                                     <td>
-                                        
+                                        <LichDay mscb={teacher.mscb} />
                                     </td>
                                 </tr>
                             );

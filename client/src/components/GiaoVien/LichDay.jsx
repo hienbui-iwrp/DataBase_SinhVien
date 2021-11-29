@@ -2,9 +2,22 @@ import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
-const LichDay = ({ mssv }) => {
+const LichDay = ({ mscb }) => {
     const [schedule, setschedule] = useState([]);
-    const fetchData = () => {};
+    const fetchData = () => {
+        var requestOptions = {
+            method: "GET",
+            redirect: "follow",
+        };
+
+        fetch(
+            "https://localhost:5001/api/giangvien/lichday?mscb=" + mscb,
+            requestOptions
+        )
+            .then((response) => response.json())
+            .then((result) => setschedule(result))
+            .catch((error) => console.log("error", error));
+    };
 
     useEffect(() => {
         fetchData();
