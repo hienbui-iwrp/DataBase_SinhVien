@@ -22,6 +22,19 @@ namespace DataBase_SinhVien.Controllers
             return data.ConvertToList<SinhVien>();
         }
 
+        [HttpGet("search")]
+        public async Task<List<SinhVien>> GetStudent(string s, string makhoa, string gioitinh)
+        {
+            if(makhoa == "Khoa")
+                makhoa = "";
+            if(gioitinh == "Giới tính")
+                gioitinh = "";
+            string query = $"SELECT MSSV, Ho, Ten, TinhTrang, NgaySinh, GioiTinh, HoKhau, MaKhoa AS Khoa, TenLopChuNhiem from SinhVien where (MSSV like N'%{s}%' or Ten like N'%{s}%') and MaKhoa like '%{makhoa}%' and GioiTinh like N'%{gioitinh}%';";
+            DataTable data = await SqlExecutes.Instance.ExecuteQuery(query);
+
+            return data.ConvertToList<SinhVien>();
+        }
+
         [HttpGet("khoa")]
         public async Task<List<Khoa>> GetAllFaculty()
         {
