@@ -102,7 +102,7 @@ const GiaoVien = () => {
                 <div className="student-header">
                     <input
                         type="text"
-                        placeholder="Search mssv, tên"
+                        placeholder="Tìm kiếm theo mscb, tên"
                         onChange={(e) => {
                             setsearch(e.target.value);
                             SearchGiaoVien(e.target.value, faculty, sex);

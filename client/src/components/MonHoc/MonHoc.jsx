@@ -69,7 +69,7 @@ const MonHoc = () => {
             <div className="student-header">
                 <input
                     type="text"
-                    placeholder="Tìm bằng tên môn học"
+                    placeholder="Tìm kiếm theo tên"
                     onChange = {e=>{
                         SearchMonHoc(e.target.value);
                     }}

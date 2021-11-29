@@ -112,7 +112,7 @@ const SinhVien = () => {
                 <div className="student-header">
                     <input
                         type="text"
-                        placeholder="Search mssv, tên"
+                        placeholder="Tìm kiếm theo mssv, tên"
                         onChange={(e) => {
                             setsearch(e.target.value);
                             SearchSinhvien(e.target.value, faculty, sex);
