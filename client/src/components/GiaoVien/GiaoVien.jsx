@@ -156,7 +156,7 @@ const GiaoVien = () => {
                                     <input
                                         type="text"
                                         required
-                                        placeholder="MSSV"
+                                        placeholder="MSCB"
                                         value={TeacherTemp.mscb}
                                         onChange={(e) =>
                                             setTeacherTemp({

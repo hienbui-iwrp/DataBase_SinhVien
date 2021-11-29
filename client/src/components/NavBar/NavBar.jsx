@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Logo from "./logo.png";
 
 const NavBar = () => {
     return (
@@ -7,7 +8,12 @@ const NavBar = () => {
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
                     <NavLink className="navbar-brand" to="/SinhVien">
-                        Quản lý sinh viên
+                        <img
+                            src={Logo}
+                            style={{
+                                width: 50,
+                            }}
+                        />
                     </NavLink>
 
                     <div
