@@ -34,3 +34,9 @@
 .student-list td > input {
     width: 100%;
 }
+
+.schedule {
+    width: max-content;
+    height: 450px;
+    margin: auto;
+}
