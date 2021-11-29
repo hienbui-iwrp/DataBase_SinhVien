@@ -15,7 +15,7 @@ namespace DataBase_SinhVien.Controllers
         [HttpGet]
         public async Task<List<SinhVien>> GetAllStudent()
         {
-            string query = "SELECT MSSV, Ho, Ten, TinhTrang, NgaySinh, GioiTinh, HoKhau, MaKhoa AS Khoa FROM SinhVien;";
+            string query = "SELECT MSSV, Ho, Ten, TinhTrang, NgaySinh, GioiTinh, HoKhau, MaKhoa AS Khoa, TenLopChuNhiem FROM SinhVien;";
 
             DataTable data = await SqlExecutes.Instance.ExecuteQuery(query);
 
@@ -37,6 +37,16 @@ namespace DataBase_SinhVien.Controllers
             }
 
             return strs;
+        }
+
+        [HttpPost]
+        public async Task<int> InsertStudent(SinhVien sinhVien)
+        {
+            string query = $"INSERT INTO SinhVien(MSSV, Ho, Ten, KhoaHoc, TinhTrang, NgaySinh, GioiTinh, CMNDCCCD, DiaChiTamTru, HoKhau, EmailTruong, EmailCaNhan, TenLopChuNhiem, MaKhoa, SoTinChiTichLuy, DiemTrungBinhTichLuy) VALUES ('{sinhVien.MSSV}', N'{sinhVien.Ho}', N'{sinhVien.Ten}', 0, N'{sinhVien.TinhTrang}', '{sinhVien.NgaySinh}', N'{sinhVien.GioiTinh}', N'', N'', N'{sinhVien.HoKhau}', N'', N'', N'{sinhVien.TenLopChuNhiem}', N'{sinhVien.Khoa}', 0, 0); ";
+
+            int n = await SqlExecutes.Instance.ExecuteNonQuery(query);
+
+            return n;
         }
     }
 }
