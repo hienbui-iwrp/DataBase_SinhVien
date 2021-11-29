@@ -47,9 +47,9 @@ const ThoiKhoaBieu = ({ mssv }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {schedule.map((s) => {
+                            {schedule.map((s, index) => {
                                 return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{s.maMonHoc}</td>
                                         <td>{s.ten}</td>
                                         <td>{s.tinChi}</td>

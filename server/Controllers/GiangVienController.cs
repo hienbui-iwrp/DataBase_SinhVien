@@ -33,5 +33,19 @@ namespace DataBase_SinhVien.Controllers
 
             return data.ConvertToList<ThoiKhoaBieu>();
         }
+
+        [HttpPost]
+        public async Task<int> InsertStudent(GiangVien giangVien)
+        {
+            string query = @$"INSERT INTO GiangVien(MSCB, Ho, Ten, ChuyenMon, GioiTinh, CMNDCCCD, NgaySinh, DiaChiTamTru, HoKhau, EmailTruong, EmailCaNhan, HocHam, MaKhoa)
+                            VALUES
+                            (
+                            N'{giangVien.MSCB}', N'{giangVien.Ho}', N'{giangVien.Ten}', '', N'{giangVien.GioiTinh}', '', N'{giangVien.NgaySinh}', '', '', '', '', N'{giangVien.HocHam}', N'{giangVien.MaKhoa}'
+                            );";
+
+            int n = await SqlExecutes.Instance.ExecuteNonQuery(query);
+
+            return n;
+        }
     }
 }

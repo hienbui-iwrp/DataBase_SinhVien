@@ -13,4 +13,11 @@ namespace DataBase_SinhVien
         public int NgayTrongTuan { get; set; }
         public string TenPhong { get; set; }
     }
+
+    public class LopChuNhiem
+    {
+        public string TenLopChuNhiem { get; set; }
+        public string MaKhoa { get; set; }
+    }
+
 }

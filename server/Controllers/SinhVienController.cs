@@ -48,5 +48,16 @@ namespace DataBase_SinhVien.Controllers
 
             return n;
         }
+
+        [HttpGet("lopchunhiem")]
+        public async Task<List<LopChuNhiem>> GetAllClass()
+        {
+            string query = @"SELECT TenLopChuNhiem, MaKhoa FROM LopChuNhiem;";
+
+            DataTable data = await SqlExecutes.Instance.ExecuteQuery(query);
+
+            return data.ConvertToList<LopChuNhiem>();
+        }
+
     }
 }

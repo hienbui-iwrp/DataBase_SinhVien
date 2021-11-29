@@ -9,7 +9,34 @@ const GiaoVien = () => {
     const [TeacherTemp, setTeacherTemp] = useState({});
     const [Teachers, setTeachers] = useState([]);
 
-    const InsertGiaoVien = () => {};
+    const InsertGiaoVien = (e) => {
+        e.preventDefault();
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        console.log(TeacherTemp);
+        var raw = JSON.stringify({
+            mscb: TeacherTemp.mscb,
+            ho: TeacherTemp.ho,
+            ten: TeacherTemp.ten,
+            chuyenMon: TeacherTemp.chuyenMon,
+            gioiTinh: TeacherTemp.gioiTinh,
+            ngaySinh: TeacherTemp.ngaySinh,
+            hocHam: TeacherTemp.hocHam,
+            maKhoa: TeacherTemp.maKhoa,
+        });
+
+        var requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow",
+        };
+
+        fetch("https://localhost:5001/api/giangvien", requestOptions)
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.log("error", error));
+    };
 
     const fetchData = () => {
         var requestOptions = {
@@ -124,9 +151,9 @@ const GiaoVien = () => {
                                 </td>
                                 <td>
                                     <input
-                                        type="text"
+                                        type="date"
                                         required
-                                        placeholder="Ngày sinh"
+                                        placeholder="Giới tính"
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,
@@ -136,17 +163,21 @@ const GiaoVien = () => {
                                     />
                                 </td>
                                 <td>
-                                    <input
-                                        type="text"
-                                        required
-                                        placeholder="Giới tính"
+                                    <select
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,
                                                 gioiTinh: e.target.value,
                                             })
                                         }
-                                    />
+                                    >
+                                        <option value="Giới tính">
+                                            Giới tính
+                                        </option>
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                        <option value="Khác">Khác</option>
+                                    </select>
                                 </td>
                                 <td>
                                     <input
@@ -162,23 +193,34 @@ const GiaoVien = () => {
                                     />
                                 </td>
                                 <td>
-                                    <input
-                                        type="text"
-                                        required
-                                        placeholder="Khoa"
+                                    <select
+                                        name="Khoa"
+                                        id="Khoa"
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,
                                                 maKhoa: e.target.value,
                                             })
                                         }
-                                    />
+                                    >
+                                        <option value="">Khoa</option>
+                                        {Faculties.map((faculty, index) => {
+                                            return (
+                                                <option
+                                                    key={index}
+                                                    value={faculty}
+                                                >
+                                                    {faculty}
+                                                </option>
+                                            );
+                                        })}
+                                    </select>
                                 </td>
                                 <td>
                                     <input
                                         type="text"
                                         required
-                                        placeholder="Tên lớp chủ nhiệm"
+                                        placeholder="Chuyên môn"
                                         onChange={(e) =>
                                             setTeacherTemp({
                                                 ...TeacherTemp,

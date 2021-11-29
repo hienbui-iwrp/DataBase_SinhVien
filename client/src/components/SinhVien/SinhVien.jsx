@@ -9,6 +9,7 @@ const SinhVien = () => {
     const [Students, setStudents] = useState([]);
     const [Faculties, setFaculties] = useState([]);
     const [faculty, setfaculty] = useState("Khoa");
+    const [classes, setclasses] = useState([]);
 
     const fetchData = () => {
         var requestOptions = {
@@ -16,14 +17,19 @@ const SinhVien = () => {
             redirect: "follow",
         };
 
-        fetch("https://localhost:5001/api/sinhvien", requestOptions)
-            .then((response) => response.json())
-            .then((result) => setStudents(result))
-            .catch((error) => console.log("error", error));
-
         fetch("https://localhost:5001/api/sinhvien/khoa", requestOptions)
             .then((response) => response.json())
             .then((result) => setFaculties(result))
+            .catch((error) => console.log("error", error));
+
+        fetch("https://localhost:5001/api/sinhvien/lopchunhiem", requestOptions)
+            .then((response) => response.json())
+            .then((result) => setclasses(result))
+            .catch((error) => console.log("error", error));
+
+        fetch("https://localhost:5001/api/sinhvien", requestOptions)
+            .then((response) => response.json())
+            .then((result) => setStudents(result))
             .catch((error) => console.log("error", error));
     };
 
@@ -154,21 +160,26 @@ const SinhVien = () => {
                                     />
                                 </td>
                                 <td>
-                                    <input
-                                        type="text"
-                                        required
-                                        placeholder="Tình Trạng"
+                                    <select
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
-                                                tinhTrang: e.target.value,
+                                                gioiTinh: e.target.value,
                                             })
                                         }
-                                    />
+                                    >
+                                        <option value="Tình trạng">
+                                            Tình trạng
+                                        </option>
+                                        <option value="Đang học">
+                                            Đang học
+                                        </option>
+                                        <option value="Bảo lưu">Bảo lưu</option>
+                                    </select>
                                 </td>
                                 <td>
                                     <input
-                                        type="text"
+                                        type="date"
                                         required
                                         placeholder="Ngày sinh"
                                         onChange={(e) =>
@@ -180,17 +191,21 @@ const SinhVien = () => {
                                     />
                                 </td>
                                 <td>
-                                    <input
-                                        type="text"
-                                        required
-                                        placeholder="Giới tính"
+                                    <select
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
                                                 gioiTinh: e.target.value,
                                             })
                                         }
-                                    />
+                                    >
+                                        <option value="Giới tính">
+                                            Giới tính
+                                        </option>
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                        <option value="Khác">Khác</option>
+                                    </select>
                                 </td>
                                 <td>
                                     <input
@@ -206,30 +221,55 @@ const SinhVien = () => {
                                     />
                                 </td>
                                 <td>
-                                    <input
-                                        type="text"
-                                        required
-                                        placeholder="Khoa"
+                                    <select
+                                        name="Khoa"
+                                        id="Khoa"
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
                                                 khoa: e.target.value,
                                             })
                                         }
-                                    />
+                                    >
+                                        <option value="">Khoa</option>
+                                        {Faculties.map((faculty, index) => {
+                                            return (
+                                                <option
+                                                    key={index}
+                                                    value={faculty}
+                                                >
+                                                    {faculty}
+                                                </option>
+                                            );
+                                        })}
+                                    </select>
                                 </td>
                                 <td>
-                                    <input
-                                        type="text"
-                                        required
-                                        placeholder="Tên lớp chủ nhiệm"
+                                    <select
+                                        name="Khoa"
+                                        id="Khoa"
                                         onChange={(e) =>
                                             setStudentTemp({
                                                 ...StudentTemp,
                                                 tenLopChuNhiem: e.target.value,
                                             })
                                         }
-                                    />
+                                    >
+                                        <option value="">Lớp</option>
+                                        {classes.map((cl, index) => {
+                                            if (cl.maKhoa === StudentTemp.khoa)
+                                                return (
+                                                    <option
+                                                        key={index}
+                                                        value={
+                                                            cl.tenLopChuNhiem
+                                                        }
+                                                    >
+                                                        {cl.tenLopChuNhiem}
+                                                    </option>
+                                                );
+                                        })}
+                                    </select>
                                 </td>
                                 <td>
                                     <button type="submit">Thêm</button>
