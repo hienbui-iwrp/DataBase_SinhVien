@@ -12,18 +12,18 @@
 
 .field__content,
 .body__content {
-  width: calc(100% / 6);
+  width: calc(100% / 4);
   padding: 5px 10px;
   text-align: center;
   z-index: 10;
 }
 
 .body__content--long {
-  width: calc(150% / 6);
+  width: calc(150% / 4);
 }
 
 .body__content--short {
-  width: calc(50% / 6);
+  width: calc(50% / 4);
 }
 
 .subject-list {
@@ -45,7 +45,7 @@
 .button--delete {
   padding: 0px 15px;
   border-radius: 5px;
-  border: none;
+  /* border: none; */
   color: #fff;
   font-weight: 700;
 }
@@ -84,7 +84,7 @@
   display: flex;
   justify-content: space-between;
   background-color: var(--subField-color);
-  padding: 5px 5%;
+  padding: 5px 6.5%;
   font-weight: 500;
   font-size: 20px;
 }
@@ -107,8 +107,13 @@
   text-align: center;
 }
 
+.class-list__sched .field__content,
+.class-list__sched .body__content {
+  width: calc(100% / 4);
+}
+
 .class-list__sched {
-  width: 90%;
+  width: 85%;
   margin: auto;
 }
 

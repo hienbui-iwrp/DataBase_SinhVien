@@ -9,7 +9,8 @@ namespace DataBase_SinhVien
 {
     public class SqlExecutes
     {
-        private string sqlDataSource = "Data Source=.;Integrated Security=True;Initial Catalog=DBASS2";
+        // private string sqlDataSource = "Data Source=/IWRP;Integrated Security=True;Initial Catalog=DBASS2";
+        private string sqlDataSource = "Data Source=IWRP\\SQLEXPRESS;Integrated Security=True;Initial Catalog=DBASS2";
         static private SqlExecutes instance;
         static public SqlExecutes Instance
         {

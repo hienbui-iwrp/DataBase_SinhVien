@@ -16,6 +16,7 @@ const MonHoc = () => {
     const [giangVien, setGiangVien] = useState([]);
     const [khoa, setKhoa] = useState([]);
     const [hocMon, setHocMon] = useState([])
+    const [render, setRender] = useState(true);
     const fetchData = () => {
         var requestOptions = {
             method: "GET",
@@ -40,13 +41,13 @@ const MonHoc = () => {
             .catch((error) => console.log("error", error));
         fetch("https://localhost:5001/api/giangvien", requestOptions)
             .then((response) => response.json())
-            .then((result) => {setGiangVien(result); console.log(result);})
+            .then((result) => {setGiangVien(result)})
             .catch((error) => console.log("error", error));
     };
     useEffect(()=>{
         fetchData();
-    },[])
-    // console.log(giangVien);
+    },[render])
+    // console.log(nhomMon);
     return (
         <div className="student">
             <div className="student-header">
@@ -54,13 +55,6 @@ const MonHoc = () => {
                     type="text"
                     placeholder="Tìm bằng tên, mã môn học"
                 />
-                <select name="Khoa" id="Khoa">
-                    <option value="Khoa">Khoa1</option>
-                    <option value="Khoa">Khoa2</option>
-                    <option value="Khoa">Khoa3</option>
-                    <option value="Khoa">Khoa4</option>
-                </select>
-
             </div>
             <div className="student-list">
                 <div className = 'subject-container'>
@@ -68,10 +62,11 @@ const MonHoc = () => {
                         <th className="field__content">Mã môn học</th>
                         <th className="field__content">Tên môn học</th>
                         <th className="field__content">Số tín chỉ</th>
-                        <th className="field__content body__content--long">Khoa</th>
-                        <th className="field__content"></th>
                         <th className="field__content">
-                            <NewMonHoc subjectList = {subjectList} setSubjectList = {setSubjectList}/>
+                            <NewMonHoc 
+                                subjectList = {subjectList} 
+                                setRender = {setRender}
+                            />
                         </th>
                     </tr>
                     <div className = "subject-list">
@@ -79,8 +74,17 @@ const MonHoc = () => {
                             subjectList.map(subject=>{
                                 return (
                                     <div>
-                                        <Info subject = {subject}/>
-                                        <Detail subject = {subject} nhomMon={nhomMon}/>
+                                        <Info 
+                                            subject = {subject}
+                                            setRender = {setRender}    
+                                        />
+                                        <Detail 
+                                            subject = {subject} 
+                                            nhomMon = {nhomMon}
+                                            giangVien = {giangVien}
+                                            hocMon = {hocMon}
+                                            setRender = {setRender}
+                                        />
                                     </div>
                                 )
                             })
@@ -95,63 +99,125 @@ const MonHoc = () => {
 
 export default MonHoc
 
-function NewMonHoc({subjectList, setSubjectList}){
+function NewMonHoc({subjectList, setRender}){
     let newSubject = subjectList[0];
     return (
         <Popup trigger={<button className = "button--edit">Thêm môn học</button>} modal>
+        {close=>(
             <div className = "modal-box">
                 <div className = "modal-header">
                     Môn học mới
                 </div>
                 <div className = "modal-body">
-                <form >
+                <form  onSubmit = {(e) =>{
+                    e.preventDefault();
+                    insertMonHoc(newSubject)
+                    setRender(prev=>!prev)
+                    close();
+                }}>
                     <p className = "modal-input">
                         <label className = "input-field">Mã môn học</label>
-                        <input type = "text" className = "input-body" required ></input>
+                        <input type = "text" className = "input-body" required 
+                            onChange = {(e)=>{
+                                newSubject.maMonHoc = e.target.value
+                            }} 
+                        ></input>
                     </p>
                     <p className = "modal-input">
                         <label className = "input-field">Tên môn học</label>
-                        <input type = "text" className = "input-body" required ></input>
+                        <input type = "text" className = "input-body" required 
+                             onChange = {(e)=>{
+                                newSubject.ten = e.target.value
+                            }}
+                        ></input>
                     </p>
                     <p className = "modal-input">
                         <label className = "input-field">Số tín chỉ</label>
-                        <input type = "text" className = "input-body" required ></input>
-                    </p>
-                    <p className = "modal-input">
-                        <label className = "input-field">Khoa</label>
-                        <select className = "input-body">
-                            <option>Khoa 1</option>
-                            <option>Khoa 2</option>
-                        </select>
+                        <input type = "text" className = "input-body" required 
+                             onChange = {(e)=>{
+                                newSubject.tinChi = e.target.value
+                            }}
+                        ></input>
                     </p>
                     <p className = "modal-input">
                         <label className = "input-field">Hệ số điểm BTL</label>
-                        <input type = "number" className = "input-body" required></input>
+                        <input type = "number" className = "input-body" 
+                            onChange = {(e)=>{
+                                newSubject.heSoBtl = e.target.value
+                            }}
+                        ></input>
                     </p>
                     <p className = "modal-input">
                         <label className = "input-field">Hệ số điểm BT</label>
-                        <input type = "number" className = "input-body" required></input>
+                        <input type = "number" className = "input-body" 
+                            onChange = {(e)=>{
+                                newSubject.heSoBt = e.target.value
+                            }}
+                        ></input>
                     </p>
                     <p className = "modal-input">
                         <label className = "input-field">Hệ số điểm KT</label>
-                        <input type = "number" className = "input-body" required></input>
+                        <input type = "number" className = "input-body" 
+                            onChange = {(e)=>{
+                                newSubject.heSoKt = e.target.value
+                            }}
+                        ></input>
                     </p>
                     <p className = "modal-input">
                         <label className = "input-field">Hệ số điểm TN</label>
-                        <input type = "number" className = "input-body" required></input>
+                        <input type = "number" className = "input-body"
+                            onChange = {(e)=>{
+                                newSubject.heSoTn = e.target.value
+                            }}
+                        ></input>
                     </p>
                     <p className = "modal-input">
                         <label className = "input-field">Hệ số điểm Thi</label>
-                        <input type = "number" className = "input-body" required></input>
+                        <input type = "number" className = "input-body"
+                            onChange = {(e)=>{
+                                newSubject.heSoThi = e.target.value
+                            }}
+                        ></input>
                     </p>
 
                     <div className = "modal-button">
-                        <button className = "button--delete" type = "button"> Hủy</button>
-                        <button className = "button--edit" type = "submit"> Lưu</button>
+                        <button className = "button--delete" type = "button" onClick = {()=>{close()}}> Hủy</button>
+                        <button className = "button--edit" type = "submit" > Lưu</button>
                     </div>
                 </form>
                 </div>
             </div>
+        )}
         </Popup> 
     )
 }
+
+function insertMonHoc(newSubject){
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        maMonHoc: newSubject.maMonHoc,
+        ten: newSubject.ten,
+        tinChi: newSubject.tinChi,
+        heSoBtl: newSubject.heSoBtl,
+        heSoBt: newSubject.heSoBt,
+        heSoKt: newSubject.heSoKt,
+        heSoTn: newSubject.heSoTn,
+        heSoThi: newSubject.heSoThi
+    });
+
+    var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+    };
+
+    fetch("https://localhost:5001/api/monhoc", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))    
+        .catch((error) => console.log("error", error));
+}
+
+
